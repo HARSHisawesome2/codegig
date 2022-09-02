@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-module.exports =  new Sequelize(process.env.DATABASE_URL, {
+module.exports =  new Sequelize("test", "postgres", "admin" ,, {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
