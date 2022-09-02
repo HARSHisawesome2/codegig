@@ -1,25 +1,33 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Gig = db.define('gig', {
-  title: {
-    type: Sequelize.STRING
-  },
-  technologies: {
-    type: Sequelize.STRING
-  },
-  description: {
-    type: Sequelize.STRING
-  },
-  budget: {
-    type: Sequelize.STRING
-  },
-  contact_email: {
-    type: Sequelize.STRING
-  }
+const User = db.define('user', {
+id: {
+         type: Sequelize.UUID,
+              defaultValue:Sequelize.UUIDV4,
+              allowNull: false,
+              primaryKey: true 
+      },
+       username: {
+               type: Sequelize.STRING,
+               allowNull: false,
+             },
+      email: {
+               type: Sequelize.STRING,
+               allowNull: false,
+               isEmail: true,
+              unique : true,
+             },
+       password: {
+               type: Sequelize.TEXT,
+               min : 12 ,
+               allowNull: false,
+             }, 
+      
+      
 });
 
-Gig.sync().then(() => {
+User.sync().then(() => {
   console.log('table created');
 });
-module.exports = Gig;
+module.exports = User;
